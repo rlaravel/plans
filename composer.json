@@ -1,0 +1,26 @@
+{
+    "name": "rafaelmorenojs/plans",
+    "description": "Crear planes y suscripciones",
+    "authors": [
+        {
+            "name": "Rafael Moreno",
+            "email": "alejandro8924@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "orchestra/testbench": "^3.8"
+    },
+    "autoload": {
+        "psr-4": {
+            "RafaelMorenoJS\\Plans\\": "src/"
+        }
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "RafaelMorenoJS\\Plans\\Providers\\PlansServiceProvider"
+            ]
+        }
+    }
+}
