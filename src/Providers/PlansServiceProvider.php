@@ -3,6 +3,18 @@
 namespace RafaelMorenoJS\Plans\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use RafaelMorenoJS\Plans\Contracts\PlanFeatureInterface;
+use RafaelMorenoJS\Plans\Contracts\PlanInterface;
+use RafaelMorenoJS\Plans\Contracts\PlanSubscriptionInterface;
+use RafaelMorenoJS\Plans\Contracts\PlanSubscriptionUsageInterface;
+use RafaelMorenoJS\Plans\Contracts\SubscriptionBuilderInterface;
+use RafaelMorenoJS\Plans\Contracts\SubscriptionResolverInterface;
+use RafaelMorenoJS\Plans\Models\Plan;
+use RafaelMorenoJS\Plans\Models\PlanFeature;
+use RafaelMorenoJS\Plans\Models\PlanSubscription;
+use RafaelMorenoJS\Plans\Models\PlanSubscriptionUsage;
+use RafaelMorenoJS\Plans\SubscriptionBuilder;
+use RafaelMorenoJS\Plans\SubscriptionResolver;
 
 /**
  * Class PlansServiceProvider
@@ -17,7 +29,12 @@ class PlansServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(PlanInterface::class, Plan::class);
+        $this->app->bind(PlanFeatureInterface::class, PlanFeature::class);
+        $this->app->bind(PlanSubscriptionInterface::class, PlanSubscription::class);
+        $this->app->bind(PlanSubscriptionUsageInterface::class, PlanSubscriptionUsage::class);
+        $this->app->bind(SubscriptionBuilderInterface::class, SubscriptionBuilder::class);
+        $this->app->bind(SubscriptionResolverInterface::class, SubscriptionResolver::class);
     }
 
     /**

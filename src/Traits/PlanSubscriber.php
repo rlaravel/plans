@@ -2,6 +2,7 @@
 
 namespace RafaelMorenoJS\Plans\Traits;
 
+use Illuminate\Container\Container;
 use Illuminate\Support\Facades\App;
 use RafaelMorenoJS\Plans\Contracts\SubscriptionBuilderInterface;
 use RafaelMorenoJS\Plans\Contracts\SubscriptionResolverInterface;
@@ -64,13 +65,13 @@ trait PlanSubscriber
     /**
      * Suscribir usuario a un nuevo plan.
      *
-     * @param string $subscription
-     * @param mixed $plan
-     * @return \RafaelMorenoJS\Plans\Models\PlanSubscription
+     * @param $subscription
+     * @param $plan
+     * @return mixed
+     * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function newSubscription($subscription, $plan)
     {
-        /*
         $container = Container::getInstance();
         if (method_exists($container, 'makeWith')) {
             return $container->makeWith(SubscriptionBuilderInterface::class, [
@@ -78,7 +79,6 @@ trait PlanSubscriber
             ]);
         }
         return $container->make(SubscriptionBuilderInterface::class, [$this, $subscription, $plan]);
-        */
     }
 
     /**

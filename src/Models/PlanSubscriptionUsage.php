@@ -53,7 +53,7 @@ class PlanSubscriptionUsage extends Model implements PlanSubscriptionUsageInterf
     }
 
     /**
-     * @param $query
+     * @param \Illuminate\Database\Eloquent\Builder $query
      * @param $featureCode
      * @return \Illuminate\Database\Eloquent\Builder
      */
