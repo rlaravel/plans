@@ -5,6 +5,8 @@ namespace RafaelMorenoJS\Plans\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use RafaelMorenoJS\Plans\Contracts\PlanInterface;
+use RafaelMorenoJS\Plans\Exceptions\InvalidPlanFeatureException;
+use RafaelMorenoJS\Plans\Getters\Plan as GetPlanAttributes;
 
 /**
  * Class Plan
@@ -25,12 +27,29 @@ use RafaelMorenoJS\Plans\Contracts\PlanInterface;
  */
 class Plan extends Model implements PlanInterface
 {
+    use GetPlanAttributes;
+
     /**
      * @var array
      */
     protected $fillable = [
         'name', 'description', 'price', 'interval', 'interval_count', 'trial_period_days', 'sort_order',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::saving(function ($model) {
+            if (! $model->interval) {
+                $model->interval = 'month';
+            }
+
+            if (! $model->interval_count) {
+                $model->interval_count = 1;
+            }
+        });
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
@@ -62,5 +81,22 @@ class Plan extends Model implements PlanInterface
     public function hasTrial(): bool
     {
         return (is_numeric($this->trial_period_days) && $this->trial_period_days > 0);
+    }
+
+    /**
+     * @param $code
+     * @return mixed
+     * @throws InvalidPlanFeatureException
+     */
+    public function getFeatureByCode($code)
+    {
+        $feature = $this->features()->getEager()->first(function($item) use ($code) {
+            return $item->code === $code;
+        });
+
+        if (is_null($feature)) {
+            throw new InvalidPlanFeatureException($code);
+        }
+        return $feature;
     }
 }

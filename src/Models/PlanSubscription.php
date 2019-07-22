@@ -6,8 +6,19 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Event;
+use RafaelMorenoJS\Plans\Contracts\PlanInterface;
 use RafaelMorenoJS\Plans\Contracts\PlanSubscriptionInterface;
+use RafaelMorenoJS\Plans\Events\SubscriptionCanceled;
+use RafaelMorenoJS\Plans\Events\SubscriptionCreated;
+use RafaelMorenoJS\Plans\Events\SubscriptionPlanChanged;
+use RafaelMorenoJS\Plans\Events\SubscriptionRenewed;
 use RafaelMorenoJS\Plans\Getters\PlanSubscription as GetPlanSubscriptionAttributes;
+use RafaelMorenoJS\Plans\Period;
+use RafaelMorenoJS\Plans\SubscriptionAbility;
+use RafaelMorenoJS\Plans\SubscriptionUsageManager;
 use RafaelMorenoJS\Plans\Traits\BelongsToPlan;
 
 /**
@@ -56,6 +67,52 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
         'canceled_immediately' => 'boolean'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($model) {
+            Event::fire(new SubscriptionCreated($model));
+        });
+
+        static::saving(function ($model) {
+            // Set period if it wasn't set
+            if (! $model->ends_at) {
+                $model->setNewPeriod();
+            }
+        });
+
+        static::saved(function ($model) {
+            // check if there is a plan and it is changed
+            if ($model->getOriginal('plan_id') && $model->getOriginal('plan_id') !== $model->plan_id) {
+                event(new SubscriptionPlanChanged($model));
+            }
+        });
+    }
+
+    /**
+     * @param string $interval
+     * @param string $interval_count
+     * @param string $start
+     * @return $this
+     * @throws \RafaelMorenoJS\Plans\Exceptions\InvalidIntervalException
+     */
+    protected function setNewPeriod($interval = '', $interval_count = '', $start = '')
+    {
+        if (empty($interval)) {
+            $interval = $this->plan->interval;
+        }
+        if (empty($interval_count)) {
+            $interval_count = $this->plan->interval_count;
+        }
+
+        $period = new Period($interval, $interval_count, $start);
+        $this->starts_at = $period->getStartDate();
+        $this->ends_at = $period->getEndDate();
+
+        return $this;
+    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -69,7 +126,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
      */
     public function usage(): HasMany
     {
-        // TODO: Implement usage() method.
+        return $this->hasMany(PlanSubscriptionUsage::class, 'subscription_id');
     }
 
     /**
@@ -77,12 +134,23 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
      */
     public function isActive(): bool
     {
-        // TODO: Implement isActive() method.
+        if ((!$this->isEnded() or $this->onTrial()) && !$this->isCanceledImmediately()) {
+            return true;
+        }
+
+        return false;
     }
 
+    /**
+     * @return bool
+     */
     public function onTrial(): bool
     {
-        // TODO: Implement onTrial() method.
+        if (! is_null($trialEndsAt = $this->trial_ends_at)) {
+            return Carbon::now()->lt(Carbon::instance($trialEndsAt));
+        }
+
+        return false;
     }
 
     /**
@@ -91,6 +159,14 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
     public function isCanceled(): bool
     {
         return !is_null($this->canceled_at);
+    }
+
+    /**
+     * @return bool
+     */
+    public function isCanceledImmediately()
+    {
+        return  (!is_null($this->canceled_at) && $this->canceled_immediately === true);
     }
 
     /**
@@ -108,7 +184,35 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
      */
     public function renew(): Model
     {
-        // TODO: Implement renew() method.
+        if ($this->isEnded() and $this->isCanceled()) {
+            throw new \LogicException('Unable to renew canceled ended subscription.');
+        }
+
+        $subscription = $this;
+        DB::transaction(function () use ($subscription) {
+            // Clear usage data
+            $usageManager = new SubscriptionUsageManager($subscription);
+            $usageManager->clear();
+            // Renew period
+            $subscription->setNewPeriod();
+            $subscription->canceled_at = null;
+            $subscription->save();
+        });
+
+        event(new SubscriptionRenewed($this));
+
+        return $this;
+    }
+
+    /**
+     * @return mixed|SubscriptionAbility
+     */
+    public function ability()
+    {
+        if (is_null($this->ability)) {
+            return new SubscriptionAbility($this);
+        }
+        return $this->ability;
     }
 
     /**
@@ -117,15 +221,102 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
      */
     public function cancel(bool $immediately = false): bool
     {
-        // TODO: Implement cancel() method.
+        $this->canceled_at = Carbon::now();
+
+        if ($immediately) {
+            $this->canceled_immediately = true;
+        }
+
+        if ($this->save()) {
+            event(new SubscriptionCanceled($this));
+
+            return $this;
+        }
+
+        return false;
     }
 
     /**
      * @param Plan $plan
      * @return Model
+     * @throws \RafaelMorenoJS\Plans\Exceptions\InvalidIntervalException
      */
     public function changePlan(Plan $plan): Model
     {
-        // TODO: Implement changePlan() method.
+        if (is_numeric($plan)) {
+            $plan = App::make(PlanInterface::class)->find($plan);
+        }
+
+         // Si los planes no tienen la misma frecuencia de facturación
+        //(por ejemplo, intervalo y intervalo_cuenta), actualizaremos las
+        //fechas de facturación a partir de hoy ... y, básicamente, estamos
+        //creando un nuevo ciclo de facturación, los datos de uso se borrarán.
+
+        if (is_null($this->plan) or $this->plan->interval !== $plan->interval or
+            $this->plan->interval_count !== $plan->interval_count) {
+            // Set period
+            $this->setNewPeriod($plan->interval, $plan->interval_count);
+            // Clear usage data
+            $usageManager = new SubscriptionUsageManager($this);
+            $usageManager->clear();
+        }
+
+        // Attach new plan to subscription
+        $this->plan_id = $plan->id;
+        return $this;
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $subscribable
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByUser($query, $subscribable)
+    {
+        return $query->where('subscribable_id', $subscribable);
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $dayRange
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFindEndingTrial($query, $dayRange = 3)
+    {
+        $from = Carbon::now();
+        $to = Carbon::now()->addDays($dayRange);
+
+        return $query->whereBetween('trial_ends_at', [$from, $to]);
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFindEndedTrial($query)
+    {
+        return $query->where('trial_ends_at', '<=', date('Y-m-d H:i:s'));
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @param int $dayRange
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFindEndingPeriod($query, $dayRange = 3)
+    {
+        $from = Carbon::now();
+        $to = Carbon::now()->addDays($dayRange);
+
+        return $query->whereBetween('ends_at', [$from, $to]);
+    }
+
+    /**
+     * @param \Illuminate\Database\Eloquent\Builder $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeFindEndedPeriod($query)
+    {
+        return $query->where('ends_at', '<=', date('Y-m-d H:i:s'));
     }
 }
