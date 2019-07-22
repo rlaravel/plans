@@ -1,3 +1,57 @@
+Instalación
+============
+
+Composer
+--------
+
+
+    $ composer require gerardojbaez/laraplans
+
+Service Provider
+----------------
+
+Agregue ``RafaelMorenoJS\Plans\Providers\PlansServiceProvider::class`` a su archivo de proveedores de servicios de aplicaciones: ``config/app.php``.
+
+
+    'providers' => [
+        /**
+         * Third Party Service Providers...
+         */
+        RafaelMorenoJS\Plans\Providers\PlansServiceProvider::class,
+    ]
+
+Config archivo y migraciones
+--------------------------
+
+Publique el archivo de configuración del paquete y las migraciones con el siguiente comando:
+
+
+    php artisan vendor:publish --provider="RafaelMorenoJS\Plans\Providers\PlansServiceProvider"
+
+Luego ejecuta las migraciones:
+
+
+    php artisan migrate
+
+Traits and Contracts
+--------------------
+
+Agregue el rasgo ``RafaelMorenoJS\Plans\Traits\PlanSubscriber`` y el contrato ``RafaelMorenoJS\Plans\Contracts\PlanSubscriberInterface`` a su modelo de ``User``.
+
+Vea el siguiente ejemplo:
+
+
+    namespace App\Models;
+
+    use Illuminate\Foundation\Auth\User as Authenticatable;
+    use RafaelMorenoJS\Plans\Contracts\PlanSubscriberInterface;
+    use RafaelMorenoJS\Plans\Traits\PlanSubscriber;
+
+    class User extends Authenticatable implements PlanSubscriberInterface
+    {
+        use PlanSubscriber;
+
+
 Uso
 =====
 
@@ -6,8 +60,8 @@ Crear un Plan
 
 
 
-    use Gerardojbaez\Laraplans\Models\Plan;
-    use Gerardojbaez\Laraplans\Models\PlanFeature;
+    use RafaelMorenoJS\Plans\Models\Plan;
+    use RafaelMorenoJS\Plans\Models\PlanFeature;
 
     $plan = Plan::create([
         'name' => 'Pro',
@@ -46,7 +100,7 @@ Primero, recupere una instancia de su modelo de suscriptor, que normalmente ser�
 
 
     use Auth;
-    use Gerardojbaez\Laraplans\Models\Plan;
+    use RafaelMorenoJS\Plans\Models\Plan;
 
     $user = Auth::user();
     $plan = Plan::find(1);
@@ -194,4 +248,38 @@ De forma predeterminada, la suscripción permanecerá activa hasta que finalice 
 
 
     $user->subscription('main')->cancel(true);
+
+Eventos
+======
+
+Los siguientes son los eventos disparados por el paquete:
+
+- ``RafaelMorenoJS\Plans\Events\SubscriptionCreated``: Se activa cuando se crea una suscripción.
+- ``RafaelMorenoJS\Plans\Events\SubscriptionRenewed``: Se activa cuando una suscripción se renueva con el método ``renew()``.
+- ``RafaelMorenoJS\Plans\Events\SubscriptionCanceled``: Se activa cuando se cancela una suscripción utilizando el método ``cancel()``.
+- ``RafaelMorenoJS\Plans\Events\SubscriptionPlanChanged``: Se dispara cuando se cambia el plan de suscripción; se activará una vez que se guarde el modelo ``PlanSubscription``. El cambio de plan se determina comparando el valor original y actual de ``plan_id``.
+
+Eloquent Scopes
+===============
+
+
+    use RafaelMorenoJS\Plans\Models\PlanSubscription;
+
+    // Obtenga suscripciones por plan:
+    $subscriptions = PlanSubscription::byPlan($plan_id)->get();
+
+    // Obtener suscripción por usuario:
+    $subscription = PlanSubscription::byUser($user_id)->first();
+
+    // Obtenga suscripciones con prueba que termina en 3 días:
+    $subscriptions = PlanSubscription::findEndingTrial(3)->get();
+
+    // Obtenga suscripciones con prueba finalizada:
+    $subscriptions = PlanSubscription::findEndedTrial()->get();
+
+    // Obtenga suscripciones con período que termina en 3 días:
+    $subscriptions = PlanSubscription::findEndingPeriod(3)->get();
+
+    // Obtenga suscripciones con período finalizado:
+    $subscriptions = PlanSubscription::findEndedPeriod()->get();
 
