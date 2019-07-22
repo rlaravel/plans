@@ -36,7 +36,7 @@ Ejemplo:
 
 
     $feature = $plan->getFeatureByCode('pictures_per_listing');
-    $feature->value // Get the feature's value
+    $feature->value // Obtener el valor de la característica
 
 Crear una Suscripción
 ---------------------
@@ -103,7 +103,7 @@ Registro de uso de funciones
 
 Para utilizar de manera efectiva los métodos de habilidad, deberá realizar un seguimiento de cada uso de las funciones basadas en el uso. Puedes usar el método ``record`` disponible a través del método ``SubscribeUsage ()`` del usuario:
 
-.. code-block::php
+
 
     $user->subscriptionUsage('main')->record('listings');
 
@@ -113,10 +113,10 @@ Vea el siguiente ejemplo:
 
 
 
-    // Increment by 2
+    // Incremento por 2
     $user->subscriptionUsage('main')->record('listings', 2);
 
-    // Override with 9
+    // Anular con 9
     $user->subscriptionUsage('main')->record('listings', 9, false);
 
 Reducir el uso de características
@@ -126,10 +126,10 @@ Reducir el uso de la función es *casi * lo mismo que aumentarla. En este caso s
 
 
 
-    // Reduce by 1
+    // Reducir en 1
     $user->subscriptionUsage('main')->reduce('listings');
 
-    // Reduce by 2
+    // Reducir en 2
     $user->subscriptionUsage('main')->reduce('listings', 2);
 
 
@@ -150,7 +150,7 @@ Para que una suscripción se considere **active** la suscripción debe tener una
 
 
     $user->subscribed('main');
-    $user->subscribed('main', $planId); // Check if subscription is active AND using a particular plan
+    $user->subscribed('main', $planId); // Compruebe si la suscripción está activa Y utilizando un plan particular
 
 Alternativamente, puede usar los siguientes métodos disponibles en el modelo de suscripción:
 
