@@ -33,7 +33,7 @@ Luego ejecuta las migraciones:
 
     php artisan migrate
 
-Traits and Contracts
+Traits y Contratos
 --------------------
 
 Agregue el rasgo ``RafaelMorenoJS\Plans\Traits\PlanSubscriber`` y el contrato ``RafaelMorenoJS\Plans\Contracts\PlanSubscriberInterface`` a su modelo de ``User``.
