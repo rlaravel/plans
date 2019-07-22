@@ -3,6 +3,7 @@
 namespace RafaelMorenoJS\Plans\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use RafaelMorenoJS\Plans\Contracts\PlanFeatureInterface;
 use RafaelMorenoJS\Plans\Traits\BelongsToPlan;
 
@@ -32,7 +33,7 @@ class PlanFeature extends Model implements PlanFeatureInterface
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function usage(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function usage(): HasMany
     {
         // TODO: Implement usage() method.
     }

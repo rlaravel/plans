@@ -2,6 +2,7 @@
 
 namespace RafaelMorenoJS\Plans;
 
+use Illuminate\Database\Eloquent\Model;
 use RafaelMorenoJS\Plans\Contracts\SubscriptionResolverInterface;
 
 /**
@@ -15,7 +16,7 @@ class SubscriptionResolver implements SubscriptionResolverInterface
      * @param string $name
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function resolve(\Illuminate\Database\Eloquent\Model $subscribable, string $name): \Illuminate\Database\Eloquent\Model
+    public function resolve(Model $subscribable, string $name): Model
     {
         $subscriptions = $subscribable->subscriptions->sortByDesc(function ($value) {
             return $value->created_at->getTimestamp();

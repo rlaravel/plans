@@ -4,6 +4,8 @@ namespace RafaelMorenoJS\Plans\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use RafaelMorenoJS\Plans\Contracts\PlanSubscriptionInterface;
 use RafaelMorenoJS\Plans\Getters\PlanSubscription as GetPlanSubscriptionAttributes;
 use RafaelMorenoJS\Plans\Traits\BelongsToPlan;
@@ -57,7 +59,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function subscribable(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    public function subscribable(): BelongsTo
     {
         return $this->morphTo();
     }
@@ -65,7 +67,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function usage(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function usage(): HasMany
     {
         // TODO: Implement usage() method.
     }
@@ -104,7 +106,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
     /**
      * @return Model
      */
-    public function renew(): \Illuminate\Database\Eloquent\Model
+    public function renew(): Model
     {
         // TODO: Implement renew() method.
     }
@@ -122,7 +124,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
      * @param Plan $plan
      * @return Model
      */
-    public function changePlan(\RafaelMorenoJS\Plans\Models\Plan $plan): \Illuminate\Database\Eloquent\Model
+    public function changePlan(Plan $plan): Model
     {
         // TODO: Implement changePlan() method.
     }

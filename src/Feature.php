@@ -45,7 +45,7 @@ class Feature
         }
 
         $this->featureCode = $featureCode;
-        $feature = config('laraplans.features.'.$featureCode);
+        $feature = config('plans.features.' . $featureCode);
 
         if (is_array($feature)) {
             foreach ($feature as $key => $value) {
@@ -63,7 +63,7 @@ class Feature
      */
     public static function getAllFeatures()
     {
-        $features = config('laraplans.features');
+        $features = config('plans.features');
 
         if (!$features) {
             return [];
@@ -89,13 +89,7 @@ class Feature
      */
     public static function isValid($code)
     {
-        $features = [
-            'SAMPLE_SIMPLE_FEATURE',
-            'SAMPLE_DEFINED_FEATURE' => [
-                'resettable_interval' => 'month',
-                'resettable_count' => 2
-            ],
-        ];
+        $features = config('plans.features');
 
         if (array_key_exists($code, $features)) {
             return true;
@@ -170,10 +164,9 @@ class Feature
     }
 
     /**
-     * Get feature's reset date.
-     *
      * @param string $dateFrom
-     * @return \Carbon\Carbon
+     * @return string
+     * @throws Exceptions\InvalidIntervalException
      */
     public function getResetDate($dateFrom = '')
     {

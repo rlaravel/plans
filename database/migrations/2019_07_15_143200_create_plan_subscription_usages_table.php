@@ -13,11 +13,11 @@ class CreatePlanSubscriptionUsagesTable extends Migration
      */
     public function up()
     {
-        Schema::create('plans', function (Blueprint $table) {
+        Schema::create('plan_subscription_usages', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('subscription_id')->unsigned();
+            $table->unsignedInteger('subscription_id');
             $table->string('code');
-            $table->smallInteger('used')->unsigned();
+            $table->unsignedSmallInteger('used');
             $table->timestamp('valid_until')->nullable();
             $table->timestamps();
         });

@@ -3,6 +3,7 @@
 namespace RafaelMorenoJS\Plans\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use RafaelMorenoJS\Plans\Contracts\PlanInterface;
 
 /**
@@ -34,7 +35,7 @@ class Plan extends Model implements PlanInterface
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function features(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function features(): HasMany
     {
         return $this->hasMany(PlanFeature::class);
     }
@@ -42,7 +43,7 @@ class Plan extends Model implements PlanInterface
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function subscriptions(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function subscriptions(): HasMany
     {
         return $this->hasMany(PlanSubscription::class);
     }

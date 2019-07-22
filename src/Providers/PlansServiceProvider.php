@@ -27,6 +27,12 @@ class PlansServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->publishes([
+            __DIR__ . '/../../config/plans.php' => config_path('plans.php')
+        ], 'config');
+
+        $this->publishes([
+            __DIR__ . '/../../database/migrations/' => database_path('migrations')
+        ], 'migrations');
     }
 }

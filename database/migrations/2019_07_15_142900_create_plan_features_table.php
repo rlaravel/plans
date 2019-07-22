@@ -13,9 +13,9 @@ class CreatePlanFeaturesTable extends Migration
      */
     public function up()
     {
-        Schema::create('plans', function (Blueprint $table) {
+        Schema::create('plan_features', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('plan_id')->unsigned();
+            $table->unsignedInteger('plan_id');
             $table->string('code');
             $table->string('value');
             $table->smallInteger('sort_order')->nullable();

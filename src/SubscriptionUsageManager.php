@@ -2,6 +2,8 @@
 
 namespace RafaelMorenoJS\Plans;
 
+use Illuminate\Database\Eloquent\Model;
+
 /**
  * Class SubscriptionUsageManager
  * @package RafaelMorenoJS\Plans
@@ -20,7 +22,7 @@ class SubscriptionUsageManager
      *
      * @param \Illuminate\Database\Eloquent\Model $subscription
      */
-    public function __construct(\Illuminate\Database\Eloquent\Model $subscription)
+    public function __construct(Model $subscription)
     {
         $this->subscription = $subscription;
     }

@@ -77,7 +77,7 @@ interface PlanSubscriptionInterface
      * @param bool $immediately
      * @return bool
      */
-    public function cancel(bool $immediately = false): bool;
+    public function cancel(bool $immediately): bool;
 
     /**
      * Cambiar plan de suscripción.

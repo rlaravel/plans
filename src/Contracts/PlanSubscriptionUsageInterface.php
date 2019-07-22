@@ -8,11 +8,25 @@ namespace RafaelMorenoJS\Plans\Contracts;
  */
 interface PlanSubscriptionUsageInterface
 {
-    public function feature();
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function feature(): \Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-    public function subscription();
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function subscription(): \Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-    public function scopeByFeatureCode($query, $featureCode);
+    /**
+     * @param $query
+     * @param $featureCode
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeByFeatureCode($query, $featureCode): \Illuminate\Database\Eloquent\Builder;
 
+    /**
+     * @return bool
+     */
     public function isExpired(): bool;
 }

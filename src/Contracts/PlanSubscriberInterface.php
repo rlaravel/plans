@@ -8,13 +8,33 @@ namespace RafaelMorenoJS\Plans\Contracts;
  */
 interface PlanSubscriberInterface
 {
-    public function subscription(string $name = 'default');
+    /**
+     * @param string $name
+     * @return mixed
+     */
+    public function subscription(string $name);
 
+    /**
+     * @return mixed
+     */
     public function subscriptions();
 
-    public function subscribed(string $subscription = 'default');
+    /**
+     * @param string $subscription
+     * @return mixed
+     */
+    public function subscribed(string $subscription);
 
+    /**
+     * @param $name
+     * @param $plan
+     * @return mixed
+     */
     public function newSubscription($name, $plan);
 
-    public function subscriptionUsage(string $subscription = 'default');
+    /**
+     * @param string $subscription
+     * @return mixed
+     */
+    public function subscriptionUsage(string $subscription);
 }
