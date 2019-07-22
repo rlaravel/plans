@@ -5,7 +5,7 @@ Composer
 --------
 
 
-    $ composer require gerardojbaez/laraplans
+    $ composer require rafaelmorenojs/plans
 
 Service Provider
 ----------------
