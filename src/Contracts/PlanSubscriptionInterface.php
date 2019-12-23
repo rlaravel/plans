@@ -13,21 +13,21 @@ interface PlanSubscriptionInterface
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function subscribable(): \Illuminate\Database\Eloquent\Relations\BelongsTo;
+    public function subscribable();
 
     /**
      * Conseguir plan
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function plan(): \Illuminate\Database\Eloquent\Relations\BelongsTo;
+    public function plan();
 
     /**
      * Obtener el uso de suscripción.
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function usage(): \Illuminate\Database\Eloquent\Relations\HasMany;
+    public function usage();
 
     /**
      * Obtener el atributo de estado.

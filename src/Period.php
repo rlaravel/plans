@@ -62,11 +62,10 @@ class Period
     /**
      * Create a new Period instance.
      *
-     * @param  string $interval Interval
-     * @param  int $count Interval count
-     * @param  string $start Starting point
-     * @throws  \RafaelMorenoJS\Plans\Exceptions\InvalidIntervalException
-     * @return  void
+     * @param  string  $interval
+     * @param  int  $count
+     * @param  string  $start
+     * @throws InvalidIntervalException
      */
     public function __construct($interval = 'month', $count = 1, $start = '')
     {
@@ -104,7 +103,7 @@ class Period
     /**
      * Get start date.
      *
-     * @return string
+     * @return Carbon|string
      */
     public function getStartDate()
     {
@@ -144,8 +143,8 @@ class Period
     /**
      * Check if a given interval is valid.
      *
-     * @param  string $interval
-     * @return boolean
+     * @param $interval
+     * @return bool
      */
     public static function isValidInterval($interval)
     {
@@ -154,8 +153,6 @@ class Period
 
     /**
      * Calculate the end date of the period.
-     *
-     * @return void
      */
     protected function calculate()
     {
@@ -166,8 +163,8 @@ class Period
 
     /**
      * Get computation method.
-     *
-     * @return string
+     * 
+     * @return mixed
      */
     protected function getMethod()
     {

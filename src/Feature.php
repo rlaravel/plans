@@ -2,6 +2,7 @@
 
 namespace RafaelMorenoJS\Plans;
 
+use Carbon\Carbon;
 use RafaelMorenoJS\Plans\Exceptions\InvalidPlanFeatureException;
 
 /**
@@ -34,9 +35,9 @@ class Feature
     /**
      * Create a new Feature instance.
      *
-     * @param string $featureCode
-     * @throws  \RafaelMorenoJS\Plans\Exceptions\InvalidPlanFeatureException
-     * @return void
+     * Feature constructor.
+     * @param $featureCode
+     * @throws InvalidPlanFeatureException
      */
     public function __construct($featureCode)
     {
@@ -84,7 +85,7 @@ class Feature
     /**
      * Check if feature code is valid.
      *
-     * @param string $code
+     * @param $code
      * @return bool
      */
     public static function isValid($code)
@@ -111,10 +112,11 @@ class Feature
     {
         return $this->featureCode;
     }
+
     /**
      * Get resettable interval.
      *
-     * @return string|null
+     * @return string
      */
     public function getResettableInterval()
     {
@@ -124,7 +126,7 @@ class Feature
     /**
      * Get resettable count.
      *
-     * @return int|null
+     * @return int
      */
     public function getResettableCount()
     {
@@ -134,8 +136,7 @@ class Feature
     /**
      * Set resettable interval.
      *
-     * @param string
-     * @return void
+     * @param $interval
      */
     public function setResettableInterval($interval)
     {
@@ -145,8 +146,7 @@ class Feature
     /**
      * Set resettable count.
      *
-     * @param int
-     * @return void
+     * @param $count
      */
     public function setResettableCount($count)
     {
@@ -164,14 +164,14 @@ class Feature
     }
 
     /**
-     * @param string $dateFrom
+     * @param  string  $dateFrom
      * @return string
      * @throws Exceptions\InvalidIntervalException
      */
     public function getResetDate($dateFrom = '')
     {
         if (empty($dateFrom)) {
-            $dateFrom = new Carbon;
+            $dateFrom = new Carbon();
         }
         $period = new Period($this->resettableInterval, $this->resettableCount, $dateFrom);
         return $period->getEndDate();

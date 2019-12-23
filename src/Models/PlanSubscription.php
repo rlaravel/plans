@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Event;
 use RafaelMorenoJS\Plans\Contracts\PlanInterface;
 use RafaelMorenoJS\Plans\Contracts\PlanSubscriptionInterface;
 use RafaelMorenoJS\Plans\Events\SubscriptionCanceled;
@@ -72,7 +71,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
         parent::boot();
 
         static::created(function ($model) {
-            Event::fire(new SubscriptionCreated($model));
+            event(new SubscriptionCreated($model));
         });
 
         static::saving(function ($model) {

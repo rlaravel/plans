@@ -27,10 +27,10 @@ class SubscriptionAbility
     }
 
     /**
-     * Determine si la característica está habilitada y tiene usos disponibles.
+     * Determina si la característica está habilitada y tiene usos disponibles.
      *
-     * @param string $feature
-     * @return boolean
+     * @param $feature
+     * @return bool
      */
     public function canUse($feature)
     {
@@ -58,7 +58,7 @@ class SubscriptionAbility
     /**
      * Obtenga cuántas veces se ha utilizado la función.
      *
-     * @param  string $feature
+     * @param $feature
      * @return int
      */
     public function consumed($feature)
@@ -74,7 +74,7 @@ class SubscriptionAbility
     /**
      * Consigue los usos disponibles.
      *
-     * @param  string $feature
+     * @param $feature
      * @return int
      */
     public function remainings($feature)
@@ -85,7 +85,7 @@ class SubscriptionAbility
     /**
      * Compruebe si la función de plan de suscripción está habilitada.
      *
-     * @param string $feature
+     * @param $feature
      * @return bool
      */
     public function enabled($feature)

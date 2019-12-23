@@ -6,6 +6,7 @@ use Illuminate\Container\Container;
 use Illuminate\Support\Facades\App;
 use RafaelMorenoJS\Plans\Contracts\SubscriptionBuilderInterface;
 use RafaelMorenoJS\Plans\Contracts\SubscriptionResolverInterface;
+use RafaelMorenoJS\Plans\Models\Plan;
 use RafaelMorenoJS\Plans\Models\PlanSubscription;
 use RafaelMorenoJS\Plans\SubscriptionUsageManager;
 
@@ -67,7 +68,7 @@ trait PlanSubscriber
      *
      * @param $subscription
      * @param $plan
-     * @return mixed
+     * @return Plan
      * @throws \Illuminate\Contracts\Container\BindingResolutionException
      */
     public function newSubscription($subscription, $plan)
