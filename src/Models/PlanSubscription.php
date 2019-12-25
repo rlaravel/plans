@@ -46,6 +46,11 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
     const STATUS_CANCELED = 'canceled';
 
     /**
+     * @var string
+     */
+    protected $connection = 'mysql';
+
+    /**
      * @var array
      */
     protected $fillable = [

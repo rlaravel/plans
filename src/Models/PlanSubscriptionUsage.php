@@ -23,6 +23,11 @@ use RafaelMorenoJS\Plans\Contracts\PlanSubscriptionUsageInterface;
 class PlanSubscriptionUsage extends Model implements PlanSubscriptionUsageInterface
 {
     /**
+     * @var string
+     */
+    protected $connection = 'mysql';
+
+    /**
      * @var array
      */
     protected $fillable = [

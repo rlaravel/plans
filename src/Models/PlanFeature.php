@@ -24,6 +24,11 @@ class PlanFeature extends Model implements PlanFeatureInterface
     use BelongsToPlan;
 
     /**
+     * @var string
+     */
+    protected $connection = 'mysql';
+
+    /**
      * @var array
      */
     protected $fillable = [

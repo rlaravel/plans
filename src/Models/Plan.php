@@ -30,6 +30,11 @@ class Plan extends Model implements PlanInterface
     use GetPlanAttributes;
 
     /**
+     * @var string
+     */
+    protected $connection = 'mysql';
+
+    /**
      * @var array
      */
     protected $fillable = [
