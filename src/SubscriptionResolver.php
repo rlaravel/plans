@@ -12,11 +12,11 @@ use RafaelMorenoJS\Plans\Contracts\SubscriptionResolverInterface;
 class SubscriptionResolver implements SubscriptionResolverInterface
 {
     /**
-     * @param \Illuminate\Database\Eloquent\Model $subscribable
-     * @param string $name
-     * @return \Illuminate\Database\Eloquent\Model
+     * @param  Model  $subscribable
+     * @param  string  $name
+     * @return Model
      */
-    public function resolve(Model $subscribable, string $name): Model
+    public function resolve(Model $subscribable, string $name)
     {
         $subscriptions = $subscribable->subscriptions->sortByDesc(function ($value) {
             return $value->created_at->getTimestamp();

@@ -112,7 +112,7 @@ El primer argumento pasado al método `` newSubscription`` debe ser el nombre de
 Resolución de suscripciones
 ----------------------
 
-Cuando utilice el método `` subscription() `` (es decir, `` $user->subscription('main') ``) en el modelo suscriptor para recuperar un abono, recibirá la última suscripción creada del abonado y El nombre de la suscripción. Por ejemplo, si se suscribe * Jane Doe * a * Free plan * y, posteriormente, a * Pro plan *, Laraplans devolverá la suscripción con el * Pro plan * porque es la suscripción más reciente disponible. Si tiene un requisito diferente, puede usar su propia resolución de suscripción vinculando una implementación de `` RafaelMorenoJS\Plans \Contracts\SubscriptionResolverInterface`` al `service container`__; al igual que:
+Cuando utilice el método `` subscription() `` (es decir, `` $user->subscription('main') ``) en el modelo suscriptor para recuperar una subscripción, recibirá la última suscripción creada por el suscriptor y el nombre de la suscripción. Por ejemplo, si se suscribe **Jane Doe** a **Free plan** y, posteriormente, a **Pro plan**, el paquete devolverá la suscripción con el **Pro plan** porque es la suscripción más reciente disponible. Si tiene un requisito diferente, puede usar su propia resolución de suscripción vinculando una implementación de `` RafaelMorenoJS\Plans \Contracts\SubscriptionResolverInterface`` al `service container`__; al igual que:
 
 https://documentacion-laravel.com/container.html#introduction
 

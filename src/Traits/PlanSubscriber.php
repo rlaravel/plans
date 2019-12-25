@@ -46,7 +46,7 @@ trait PlanSubscriber
      */
     public function subscribed(string $subscription = 'default', int $planId = null): bool
     {
-        $subscription = $this->subscription();
+        $subscription = $this->subscription($subscription);
 
         if (!is_null($subscription)) {
             return false;

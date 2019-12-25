@@ -11,9 +11,9 @@ interface SubscriptionResolverInterface
     /**
      * Resolver la suscripción suscribible.
      *
-     * @param \Illuminate\Database\Eloquent\Model $subscribable
-     * @param string $name
-     * @return \Illuminate\Database\Eloquent\Model
+     * @param  \Illuminate\Database\Eloquent\Model  $subscribable
+     * @param  string  $name
+     * @return mixed
      */
-    public function resolve(\Illuminate\Database\Eloquent\Model $subscribable, string $name): \Illuminate\Database\Eloquent\Model;
+    public function resolve(\Illuminate\Database\Eloquent\Model $subscribable, string $name);
 }
