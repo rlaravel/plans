@@ -2,6 +2,7 @@
 
 namespace RafaelMorenoJS\Plans\Providers;
 
+use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
 use RafaelMorenoJS\Plans\Contracts\PlanFeatureInterface;
 use RafaelMorenoJS\Plans\Contracts\PlanInterface;
@@ -51,5 +52,37 @@ class PlansServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/../../database/migrations/' => database_path('migrations')
         ], 'migrations');
+
+        $this->bladeDirectives();
+    }
+
+    /**
+     *
+     */
+    protected function bladeDirectives()
+    {
+        Blade::if('plansubscribed', function () {
+            return auth()->user()->subscribed('main');
+        });
+
+        Blade::if('planactive', function () {
+            return auth()->user()->subscription('main')->isActive();
+        });
+
+        Blade::if('plancanceled', function () {
+            return auth()->user()->subscription('main')->isCanceled();
+        });
+
+        Blade::if('plancanceledimmediately', function () {
+            return auth()->user()->subscription('main')->isCanceledImmediately();
+        });
+
+        Blade::if('planended', function () {
+            return auth()->user()->subscription('main')->isEnded();
+        });
+
+        Blade::if('plantrial', function () {
+            return auth()->user()->subscription('main')->onTrial();
+        });
     }
 }

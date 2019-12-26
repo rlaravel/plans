@@ -48,7 +48,7 @@ trait PlanSubscriber
     {
         $subscription = $this->subscription($subscription);
 
-        if (!is_null($subscription)) {
+        if (is_null($subscription)) {
             return false;
         }
 

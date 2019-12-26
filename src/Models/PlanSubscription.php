@@ -16,6 +16,7 @@ use RafaelMorenoJS\Plans\Events\SubscriptionPlanChanged;
 use RafaelMorenoJS\Plans\Events\SubscriptionRenewed;
 use RafaelMorenoJS\Plans\Getters\PlanSubscription as GetPlanSubscriptionAttributes;
 use RafaelMorenoJS\Plans\Period;
+use RafaelMorenoJS\Plans\Presenters\PlanSubscriptionPresenter;
 use RafaelMorenoJS\Plans\SubscriptionAbility;
 use RafaelMorenoJS\Plans\SubscriptionUsageManager;
 use RafaelMorenoJS\Plans\Traits\BelongsToPlan;
@@ -150,7 +151,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
      */
     public function onTrial(): bool
     {
-        if (! is_null($trialEndsAt = $this->trial_ends_at)) {
+        if (!is_null($trialEndsAt = $this->trial_ends_at)) {
             return Carbon::now()->lt(Carbon::instance($trialEndsAt));
         }
 
@@ -234,7 +235,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
         if ($this->save()) {
             event(new SubscriptionCanceled($this));
 
-            return $this;
+            return true;
         }
 
         return false;
@@ -322,5 +323,13 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
     public function scopeFindEndedPeriod($query)
     {
         return $query->where('ends_at', '<=', date('Y-m-d H:i:s'));
+    }
+
+    /**
+     * @return PlanSubscriptionPresenter
+     */
+    public function present()
+    {
+        return new PlanSubscriptionPresenter($this);
     }
 }
