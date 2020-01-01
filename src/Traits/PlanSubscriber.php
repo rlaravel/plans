@@ -79,6 +79,7 @@ trait PlanSubscriber
                 'user' => $this, 'name' => $subscription, 'plan' => $plan
             ]);
         }
+
         return $container->make(SubscriptionBuilderInterface::class, [$this, $subscription, $plan]);
     }
 
