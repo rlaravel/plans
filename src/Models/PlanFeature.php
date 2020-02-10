@@ -1,15 +1,15 @@
 <?php
 
-namespace RafaelMorenoJS\Plans\Models;
+namespace MorenoRafael\Plans\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use RafaelMorenoJS\Plans\Contracts\PlanFeatureInterface;
-use RafaelMorenoJS\Plans\Traits\BelongsToPlan;
+use MorenoRafael\Plans\Contracts\PlanFeatureInterface;
+use MorenoRafael\Plans\Traits\BelongsToPlan;
 
 /**
  * Class PlanFeature
- * @package RafaelMorenoJS\Plans\Models
+ * @package MorenoRafael\Plans\Models
  * @property-read int $id
  * @property int $plan_id
  * @property string $code

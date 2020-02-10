@@ -1,5 +1,5 @@
 {
-    "name": "rafaelmorenojs/plans",
+    "name": "MorenoRafael/plans",
     "description": "Crear planes y suscripciones",
     "authors": [
         {
@@ -13,13 +13,13 @@
     },
     "autoload": {
         "psr-4": {
-            "RafaelMorenoJS\\Plans\\": "src/"
+            "MorenoRafael\\Plans\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "RafaelMorenoJS\\Plans\\Providers\\PlansServiceProvider"
+                "MorenoRafael\\Plans\\Providers\\PlansServiceProvider"
             ]
         }
     }

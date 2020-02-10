@@ -1,13 +1,13 @@
 <?php
 
-namespace RafaelMorenoJS\Plans;
+namespace MorenoRafael\Plans;
 
 use Illuminate\Database\Eloquent\Model;
-use RafaelMorenoJS\Plans\Contracts\SubscriptionResolverInterface;
+use MorenoRafael\Plans\Contracts\SubscriptionResolverInterface;
 
 /**
  * Class SubscriptionResolver
- * @package RafaelMorenoJS\Plans
+ * @package MorenoRafael\Plans
  */
 class SubscriptionResolver implements SubscriptionResolverInterface
 {

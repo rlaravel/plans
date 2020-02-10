@@ -1,18 +1,18 @@
 <?php
 
-namespace RafaelMorenoJS\Plans\Traits;
+namespace MorenoRafael\Plans\Traits;
 
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\App;
-use RafaelMorenoJS\Plans\Contracts\SubscriptionBuilderInterface;
-use RafaelMorenoJS\Plans\Contracts\SubscriptionResolverInterface;
-use RafaelMorenoJS\Plans\Models\Plan;
-use RafaelMorenoJS\Plans\Models\PlanSubscription;
-use RafaelMorenoJS\Plans\SubscriptionUsageManager;
+use MorenoRafael\Plans\Contracts\SubscriptionBuilderInterface;
+use MorenoRafael\Plans\Contracts\SubscriptionResolverInterface;
+use MorenoRafael\Plans\Models\Plan;
+use MorenoRafael\Plans\Models\PlanSubscription;
+use MorenoRafael\Plans\SubscriptionUsageManager;
 
 /**
  * Trait PlanSubscriber
- * @package RafaelMorenoJS\Plans\Traits
+ * @package MorenoRafael\Plans\Traits
  */
 trait PlanSubscriber
 {
@@ -20,7 +20,7 @@ trait PlanSubscriber
      * Obtener una suscripción por nombre.
      *
      * @param string $name
-     * @return \RafaelMorenoJS\Plans\Models\PlanSubscription|null
+     * @return \MorenoRafael\Plans\Models\PlanSubscription|null
      */
     public function subscription(string $name = 'default')
     {
@@ -87,7 +87,7 @@ trait PlanSubscriber
      * Obtener instancia de administrador de uso de suscripción.
      *
      * @param  string $subscription
-     * @return \RafaelMorenoJS\Plans\SubscriptionUsageManager
+     * @return \MorenoRafael\Plans\SubscriptionUsageManager
      */
     public function subscriptionUsage($subscription = 'default')
     {

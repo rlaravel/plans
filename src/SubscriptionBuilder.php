@@ -1,15 +1,15 @@
 <?php
 
-namespace RafaelMorenoJS\Plans;
+namespace MorenoRafael\Plans;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use RafaelMorenoJS\Plans\Contracts\SubscriptionBuilderInterface;
-use RafaelMorenoJS\Plans\Models\PlanSubscription;
+use MorenoRafael\Plans\Contracts\SubscriptionBuilderInterface;
+use MorenoRafael\Plans\Models\PlanSubscription;
 
 /**
  * Class SubscriptionBuilder
- * @package RafaelMorenoJS\Plans
+ * @package MorenoRafael\Plans
  */
 class SubscriptionBuilder implements SubscriptionBuilderInterface
 {

@@ -1,13 +1,13 @@
 <?php
 
-namespace RafaelMorenoJS\Plans\Events;
+namespace MorenoRafael\Plans\Events;
 
 use Illuminate\Queue\SerializesModels;
-use RafaelMorenoJS\Plans\Models\PlanSubscription;
+use MorenoRafael\Plans\Models\PlanSubscription;
 
 /**
  * Class SubscriptionPlanChanged
- * @package RafaelMorenoJS\Plans\Events
+ * @package MorenoRafael\Plans\Events
  */
 class SubscriptionPlanChanged
 {

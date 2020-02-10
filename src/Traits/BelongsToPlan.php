@@ -1,12 +1,12 @@
 <?php
 
-namespace RafaelMorenoJS\Plans\Traits;
+namespace MorenoRafael\Plans\Traits;
 
-use RafaelMorenoJS\Plans\Models\Plan;
+use MorenoRafael\Plans\Models\Plan;
 
 /**
  * Trait BelongsToPlan
- * @package RafaelMorenoJS\Plans\Traits
+ * @package MorenoRafael\Plans\Traits
  */
 trait BelongsToPlan
 {

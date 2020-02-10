@@ -1,25 +1,25 @@
 <?php
 
-namespace RafaelMorenoJS\Plans\Providers;
+namespace MorenoRafael\Plans\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use RafaelMorenoJS\Plans\Contracts\PlanFeatureInterface;
-use RafaelMorenoJS\Plans\Contracts\PlanInterface;
-use RafaelMorenoJS\Plans\Contracts\PlanSubscriptionInterface;
-use RafaelMorenoJS\Plans\Contracts\PlanSubscriptionUsageInterface;
-use RafaelMorenoJS\Plans\Contracts\SubscriptionBuilderInterface;
-use RafaelMorenoJS\Plans\Contracts\SubscriptionResolverInterface;
-use RafaelMorenoJS\Plans\Models\Plan;
-use RafaelMorenoJS\Plans\Models\PlanFeature;
-use RafaelMorenoJS\Plans\Models\PlanSubscription;
-use RafaelMorenoJS\Plans\Models\PlanSubscriptionUsage;
-use RafaelMorenoJS\Plans\SubscriptionBuilder;
-use RafaelMorenoJS\Plans\SubscriptionResolver;
+use MorenoRafael\Plans\Contracts\PlanFeatureInterface;
+use MorenoRafael\Plans\Contracts\PlanInterface;
+use MorenoRafael\Plans\Contracts\PlanSubscriptionInterface;
+use MorenoRafael\Plans\Contracts\PlanSubscriptionUsageInterface;
+use MorenoRafael\Plans\Contracts\SubscriptionBuilderInterface;
+use MorenoRafael\Plans\Contracts\SubscriptionResolverInterface;
+use MorenoRafael\Plans\Models\Plan;
+use MorenoRafael\Plans\Models\PlanFeature;
+use MorenoRafael\Plans\Models\PlanSubscription;
+use MorenoRafael\Plans\Models\PlanSubscriptionUsage;
+use MorenoRafael\Plans\SubscriptionBuilder;
+use MorenoRafael\Plans\SubscriptionResolver;
 
 /**
  * Class PlansServiceProvider
- * @package RafaelMorenoJS\Plans\Providers
+ * @package MorenoRafael\Plans\Providers
  */
 class PlansServiceProvider extends ServiceProvider
 {

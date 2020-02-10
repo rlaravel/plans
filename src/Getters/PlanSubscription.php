@@ -1,10 +1,10 @@
 <?php
 
-namespace RafaelMorenoJS\Plans\Getters;
+namespace MorenoRafael\Plans\Getters;
 
 /**
  * Trait PlanSubscription
- * @package RafaelMorenoJS\Plans\Getters
+ * @package MorenoRafael\Plans\Getters
  */
 trait PlanSubscription
 {

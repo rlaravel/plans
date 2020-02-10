@@ -1,16 +1,16 @@
 <?php
 
-namespace RafaelMorenoJS\Plans\Models;
+namespace MorenoRafael\Plans\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use RafaelMorenoJS\Plans\Contracts\PlanSubscriptionUsageInterface;
+use MorenoRafael\Plans\Contracts\PlanSubscriptionUsageInterface;
 
 /**
  * Class PlanSubscriptionUsage
- * @package RafaelMorenoJS\Plans\Models
+ * @package MorenoRafael\Plans\Models
  * @property-read int $id
  * @property int $subscription_id
  * @property string $code

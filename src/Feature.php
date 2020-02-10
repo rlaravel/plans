@@ -1,13 +1,13 @@
 <?php
 
-namespace RafaelMorenoJS\Plans;
+namespace MorenoRafael\Plans;
 
 use Carbon\Carbon;
-use RafaelMorenoJS\Plans\Exceptions\InvalidPlanFeatureException;
+use MorenoRafael\Plans\Exceptions\InvalidPlanFeatureException;
 
 /**
  * Class Feature
- * @package RafaelMorenoJS\Plans
+ * @package MorenoRafael\Plans
  */
 class Feature
 {

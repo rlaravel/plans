@@ -1,10 +1,10 @@
 <?php
 
-namespace RafaelMorenoJS\Plans;
+namespace MorenoRafael\Plans;
 
 /**
  * Class SubscriptionAbility
- * @package RafaelMorenoJS\Plans
+ * @package MorenoRafael\Plans
  */
 class SubscriptionAbility
 {

@@ -1,16 +1,16 @@
 <?php
 
-namespace RafaelMorenoJS\Plans\Models;
+namespace MorenoRafael\Plans\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use RafaelMorenoJS\Plans\Contracts\PlanInterface;
-use RafaelMorenoJS\Plans\Exceptions\InvalidPlanFeatureException;
-use RafaelMorenoJS\Plans\Getters\Plan as GetPlanAttributes;
+use MorenoRafael\Plans\Contracts\PlanInterface;
+use MorenoRafael\Plans\Exceptions\InvalidPlanFeatureException;
+use MorenoRafael\Plans\Getters\Plan as GetPlanAttributes;
 
 /**
  * Class Plan
- * @package RafaelMorenoJS\Plans\Models
+ * @package MorenoRafael\Plans\Models
  * @property-read int $id
  * @property string $name
  * @property string|null $description
@@ -21,8 +21,8 @@ use RafaelMorenoJS\Plans\Getters\Plan as GetPlanAttributes;
  * @property int|null $sort_order
  * @property-read \Carbon\Carbon $created_at
  * @property-read \Carbon\Carbon $updated_at
- * @property-read \RafaelMorenoJS\Plans\Models\PlanFeature[]|\Illuminate\Support\Collection $features
- * @property-read \RafaelMorenoJS\Plans\Models\PlanSubscription[]|\Illuminate\Support\Collection $subscriptions
+ * @property-read \MorenoRafael\Plans\Models\PlanFeature[]|\Illuminate\Support\Collection $features
+ * @property-read \MorenoRafael\Plans\Models\PlanSubscription[]|\Illuminate\Support\Collection $subscriptions
  * @mixin \Eloquent
  */
 class Plan extends Model implements PlanInterface

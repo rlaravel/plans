@@ -1,10 +1,10 @@
 <?php
 
-namespace RafaelMorenoJS\Plans\Contracts;
+namespace MorenoRafael\Plans\Contracts;
 
 /**
  * Interface PlanInterface
- * @package RafaelMorenoJS\Plans\Contracts
+ * @package MorenoRafael\Plans\Contracts
  */
 interface PlanInterface
 {

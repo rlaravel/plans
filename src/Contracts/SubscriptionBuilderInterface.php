@@ -1,10 +1,10 @@
 <?php
 
-namespace RafaelMorenoJS\Plans\Contracts;
+namespace MorenoRafael\Plans\Contracts;
 
 /**
  * Interface SubscriptionBuilderInterface
- * @package RafaelMorenoJS\Plans\Contracts
+ * @package MorenoRafael\Plans\Contracts
  */
 interface SubscriptionBuilderInterface
 {
@@ -27,7 +27,7 @@ interface SubscriptionBuilderInterface
      * Crear una nueva suscripción.
      *
      * @param array $attributes
-     * @return \RafaelMorenoJS\Plans\Models\PlanSubscription
+     * @return \MorenoRafael\Plans\Models\PlanSubscription
      */
-    public function create(array $attributes = []): \RafaelMorenoJS\Plans\Models\PlanSubscription;
+    public function create(array $attributes = []): \MorenoRafael\Plans\Models\PlanSubscription;
 }
