@@ -6,6 +6,7 @@ use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 use MorenoRafael\Plans\Contracts\SubscriptionBuilderInterface;
 use MorenoRafael\Plans\Models\PlanSubscription;
+use Ramsey\Uuid\Uuid;
 
 /**
  * Class SubscriptionBuilder
@@ -88,11 +89,13 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
 
     /**
      * @param array $attributes
-     * @return Models\PlanSubscription
+     * @return PlanSubscription
+     * @throws \Exception
      */
     public function create(array $attributes = []): PlanSubscription
     {
         $now = Carbon::now();
+
         if ($this->skipTrial) {
             $trialEndsAt = null;
         } elseif ($this->trialDays) {
@@ -104,6 +107,7 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
         }
 
         return $this->user->subscriptions()->create(array_replace([
+            'uuid' => Uuid::uuid4(),
             'plan_id' => $this->plan->id,
             'trial_ends_at' => $trialEndsAt,
             'name' => $this->name

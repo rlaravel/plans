@@ -15,6 +15,7 @@ class CreatePlanSubscriptionUsagesTable extends Migration
     {
         Schema::create('plan_subscription_usages', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uuid', 36)->unique();
             $table->unsignedInteger('subscription_id');
             $table->string('code');
             $table->unsignedSmallInteger('used');

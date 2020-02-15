@@ -15,6 +15,7 @@ use MorenoRafael\Plans\Events\SubscriptionCreated;
 use MorenoRafael\Plans\Events\SubscriptionPlanChanged;
 use MorenoRafael\Plans\Events\SubscriptionRenewed;
 use MorenoRafael\Plans\Getters\PlanSubscription as GetPlanSubscriptionAttributes;
+use MorenoRafael\Plans\Models\Traits\CreatingUuidModel;
 use MorenoRafael\Plans\Period;
 use MorenoRafael\Plans\Presenters\PlanSubscriptionPresenter;
 use MorenoRafael\Plans\SubscriptionAbility;
@@ -37,10 +38,11 @@ use MorenoRafael\Plans\Traits\BelongsToPlan;
  * @property-read \Carbon\Carbon $created_at
  * @property-read \Carbon\Carbon $updated_at
  * @mixin \Eloquent
+ * @method static \Illuminate\Database\Eloquent\Builder byUser($subscribable)
  */
 class PlanSubscription extends Model implements PlanSubscriptionInterface
 {
-    use BelongsToPlan, GetPlanSubscriptionAttributes;
+    use BelongsToPlan, GetPlanSubscriptionAttributes, CreatingUuidModel;
 
     const STATUS_ENDED = 'ended';
     const STATUS_ACTIVE = 'active';
@@ -55,7 +57,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
      * @var array
      */
     protected $fillable = [
-        'plan_id', 'name', 'trial_ends_at', 'starts_at', 'ends_at', 'canceled_at'
+        'uuid', 'plan_id', 'name', 'trial_ends_at', 'starts_at', 'ends_at', 'canceled_at'
     ];
 
     /***
@@ -186,6 +188,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
 
     /**
      * @return Model
+     * @throws \Throwable
      */
     public function renew(): Model
     {

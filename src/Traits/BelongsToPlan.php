@@ -7,6 +7,7 @@ use MorenoRafael\Plans\Models\Plan;
 /**
  * Trait BelongsToPlan
  * @package MorenoRafael\Plans\Traits
+ * @property-read \MorenoRafael\Plans\Models\Plan $plan
  */
 trait BelongsToPlan
 {

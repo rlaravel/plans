@@ -15,6 +15,7 @@ class CreatePlansTable extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->increments('id');
+            $table->string('uuid', 36)->unique();
             $table->string('name');
             $table->text('description')->nullable();
             $table->decimal('price', 10, 2)->default('0.00');

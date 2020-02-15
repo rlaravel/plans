@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use MorenoRafael\Plans\Contracts\PlanSubscriptionUsageInterface;
+use MorenoRafael\Plans\Models\Traits\CreatingUuidModel;
 
 /**
  * Class PlanSubscriptionUsage
@@ -22,6 +23,8 @@ use MorenoRafael\Plans\Contracts\PlanSubscriptionUsageInterface;
  */
 class PlanSubscriptionUsage extends Model implements PlanSubscriptionUsageInterface
 {
+    use CreatingUuidModel;
+
     /**
      * @var string
      */
@@ -31,7 +34,7 @@ class PlanSubscriptionUsage extends Model implements PlanSubscriptionUsageInterf
      * @var array
      */
     protected $fillable = [
-        'subscription_id', 'code', 'used', 'valid_until'
+        'uuid', 'subscription_id', 'code', 'used', 'valid_until'
     ];
 
     /**

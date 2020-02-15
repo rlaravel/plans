@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 use MorenoRafael\Plans\Contracts\PlanInterface;
 use MorenoRafael\Plans\Exceptions\InvalidPlanFeatureException;
 use MorenoRafael\Plans\Getters\Plan as GetPlanAttributes;
+use MorenoRafael\Plans\Models\Traits\CreatingUuidModel;
 
 /**
  * Class Plan
@@ -27,7 +28,7 @@ use MorenoRafael\Plans\Getters\Plan as GetPlanAttributes;
  */
 class Plan extends Model implements PlanInterface
 {
-    use GetPlanAttributes;
+    use GetPlanAttributes, CreatingUuidModel;
 
     /**
      * @var string
@@ -38,7 +39,7 @@ class Plan extends Model implements PlanInterface
      * @var array
      */
     protected $fillable = [
-        'name', 'description', 'price', 'interval', 'interval_count', 'trial_period_days', 'sort_order',
+        'uuid', 'name', 'description', 'price', 'interval', 'interval_count', 'trial_period_days', 'sort_order',
     ];
 
     protected static function boot()

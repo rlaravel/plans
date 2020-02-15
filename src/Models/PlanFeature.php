@@ -5,6 +5,7 @@ namespace MorenoRafael\Plans\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use MorenoRafael\Plans\Contracts\PlanFeatureInterface;
+use MorenoRafael\Plans\Models\Traits\CreatingUuidModel;
 use MorenoRafael\Plans\Traits\BelongsToPlan;
 
 /**
@@ -21,7 +22,7 @@ use MorenoRafael\Plans\Traits\BelongsToPlan;
  */
 class PlanFeature extends Model implements PlanFeatureInterface
 {
-    use BelongsToPlan;
+    use BelongsToPlan, CreatingUuidModel;
 
     /**
      * @var string
@@ -32,7 +33,7 @@ class PlanFeature extends Model implements PlanFeatureInterface
      * @var array
      */
     protected $fillable = [
-        'plan_id', 'code', 'value', 'sort_order'
+        'uuid', 'plan_id', 'code', 'value', 'sort_order'
     ];
 
     /**
