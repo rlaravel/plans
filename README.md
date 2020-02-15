@@ -5,7 +5,7 @@ Composer
 --------
 
 
-    $ composer require MorenoRafael/plans
+    $ composer require morenorafael/plans
 
 Service Provider
 ----------------
