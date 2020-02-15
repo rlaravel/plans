@@ -1,6 +1,7 @@
 {
     "name": "morenorafael/plans",
     "description": "Crear planes y suscripciones",
+    "license": "MIT",
     "authors": [
         {
             "name": "Rafael Moreno",
