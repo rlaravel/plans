@@ -1,12 +1,12 @@
 <?php
 
-namespace MorenoRafael\Plans;
+namespace RLaravel\Plans;
 
 use Illuminate\Database\Eloquent\Model;
 
 /**
  * Class SubscriptionUsageManager
- * @package MorenoRafael\Plans
+ * @package RLaravel\Plans
  */
 class SubscriptionUsageManager
 {

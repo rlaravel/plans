@@ -1,17 +1,17 @@
 <?php
 
-namespace MorenoRafael\Plans\Models;
+namespace RLaravel\Plans\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use MorenoRafael\Plans\Contracts\PlanSubscriptionUsageInterface;
-use MorenoRafael\Plans\Models\Traits\CreatingUuidModel;
+use RLaravel\Plans\Contracts\PlanSubscriptionUsageInterface;
+use RLaravel\Plans\Models\Traits\CreatingUuidModel;
 
 /**
  * Class PlanSubscriptionUsage
- * @package MorenoRafael\Plans\Models
+ * @package RLaravel\Plans\Models
  * @property-read int $id
  * @property int $subscription_id
  * @property string $code

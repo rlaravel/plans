@@ -1,13 +1,13 @@
 <?php
 
-namespace MorenoRafael\Plans\Events;
+namespace RLaravel\Plans\Events;
 
 use Illuminate\Queue\SerializesModels;
-use MorenoRafael\Plans\Models\PlanSubscription;
+use RLaravel\Plans\Models\PlanSubscription;
 
 /**
  * Class SubscriptionPlanChanged
- * @package MorenoRafael\Plans\Events
+ * @package RLaravel\Plans\Events
  */
 class SubscriptionPlanChanged
 {

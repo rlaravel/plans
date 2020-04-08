@@ -1,13 +1,13 @@
 <?php
 
-namespace MorenoRafael\Plans\Traits;
+namespace RLaravel\Plans\Traits;
 
-use MorenoRafael\Plans\Models\Plan;
+use RLaravel\Plans\Models\Plan;
 
 /**
  * Trait BelongsToPlan
- * @package MorenoRafael\Plans\Traits
- * @property-read \MorenoRafael\Plans\Models\Plan $plan
+ * @package RLaravel\Plans\Traits
+ * @property-read \RLaravel\Plans\Models\Plan $plan
  */
 trait BelongsToPlan
 {

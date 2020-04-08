@@ -1,11 +1,11 @@
 {
-    "name": "morenorafael/plans",
+    "name": "rlaravel/plans",
     "description": "Crear planes y suscripciones",
     "license": "MIT",
     "authors": [
         {
             "name": "Rafael Moreno",
-            "email": "alejandro8924@gmail.com"
+            "email": "rlaravel1@gmail.com"
         }
     ],
     "require": {
@@ -16,13 +16,13 @@
     },
     "autoload": {
         "psr-4": {
-            "MorenoRafael\\Plans\\": "src/"
+            "RLaravel\\Plans\\": "src/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-                "MorenoRafael\\Plans\\Providers\\PlansServiceProvider"
+                "RLaravel\\Plans\\Providers\\PlansServiceProvider"
             ]
         }
     }

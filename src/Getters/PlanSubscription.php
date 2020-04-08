@@ -1,10 +1,10 @@
 <?php
 
-namespace MorenoRafael\Plans\Getters;
+namespace RLaravel\Plans\Getters;
 
 /**
  * Trait PlanSubscription
- * @package MorenoRafael\Plans\Getters
+ * @package RLaravel\Plans\Getters
  */
 trait PlanSubscription
 {

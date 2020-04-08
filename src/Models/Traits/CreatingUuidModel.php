@@ -1,6 +1,6 @@
 <?php
 
-namespace MorenoRafael\Plans\Models\Traits;
+namespace RLaravel\Plans\Models\Traits;
 
 use Ramsey\Uuid\Uuid;
 

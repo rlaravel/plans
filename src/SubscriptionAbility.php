@@ -1,10 +1,10 @@
 <?php
 
-namespace MorenoRafael\Plans;
+namespace RLaravel\Plans;
 
 /**
  * Class SubscriptionAbility
- * @package MorenoRafael\Plans
+ * @package RLaravel\Plans
  */
 class SubscriptionAbility
 {

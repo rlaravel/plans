@@ -1,10 +1,10 @@
 <?php
 
-namespace MorenoRafael\Plans\Contracts;
+namespace RLaravel\Plans\Contracts;
 
 /**
  * Interface PlanSubscriptionInterface
- * @package MorenoRafael\Plans\Contracts
+ * @package RLaravel\Plans\Contracts
  */
 interface PlanSubscriptionInterface
 {
@@ -82,8 +82,8 @@ interface PlanSubscriptionInterface
     /**
      * Cambiar plan de suscripción.
      *
-     * @param \MorenoRafael\Plans\Models\Plan $plan
+     * @param \RLaravel\Plans\Models\Plan $plan
      * @return \Illuminate\Database\Eloquent\Model
      */
-    public function changePlan(\MorenoRafael\Plans\Models\Plan $plan): \Illuminate\Database\Eloquent\Model;
+    public function changePlan(\RLaravel\Plans\Models\Plan $plan): \Illuminate\Database\Eloquent\Model;
 }

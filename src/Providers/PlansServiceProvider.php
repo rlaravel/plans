@@ -1,25 +1,25 @@
 <?php
 
-namespace MorenoRafael\Plans\Providers;
+namespace RLaravel\Plans\Providers;
 
 use Illuminate\Support\Facades\Blade;
 use Illuminate\Support\ServiceProvider;
-use MorenoRafael\Plans\Contracts\PlanFeatureInterface;
-use MorenoRafael\Plans\Contracts\PlanInterface;
-use MorenoRafael\Plans\Contracts\PlanSubscriptionInterface;
-use MorenoRafael\Plans\Contracts\PlanSubscriptionUsageInterface;
-use MorenoRafael\Plans\Contracts\SubscriptionBuilderInterface;
-use MorenoRafael\Plans\Contracts\SubscriptionResolverInterface;
-use MorenoRafael\Plans\Models\Plan;
-use MorenoRafael\Plans\Models\PlanFeature;
-use MorenoRafael\Plans\Models\PlanSubscription;
-use MorenoRafael\Plans\Models\PlanSubscriptionUsage;
-use MorenoRafael\Plans\SubscriptionBuilder;
-use MorenoRafael\Plans\SubscriptionResolver;
+use RLaravel\Plans\Contracts\PlanFeatureInterface;
+use RLaravel\Plans\Contracts\PlanInterface;
+use RLaravel\Plans\Contracts\PlanSubscriptionInterface;
+use RLaravel\Plans\Contracts\PlanSubscriptionUsageInterface;
+use RLaravel\Plans\Contracts\SubscriptionBuilderInterface;
+use RLaravel\Plans\Contracts\SubscriptionResolverInterface;
+use RLaravel\Plans\Models\Plan;
+use RLaravel\Plans\Models\PlanFeature;
+use RLaravel\Plans\Models\PlanSubscription;
+use RLaravel\Plans\Models\PlanSubscriptionUsage;
+use RLaravel\Plans\SubscriptionBuilder;
+use RLaravel\Plans\SubscriptionResolver;
 
 /**
  * Class PlansServiceProvider
- * @package MorenoRafael\Plans\Providers
+ * @package RLaravel\Plans\Providers
  */
 class PlansServiceProvider extends ServiceProvider
 {

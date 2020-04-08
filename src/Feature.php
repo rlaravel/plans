@@ -1,13 +1,13 @@
 <?php
 
-namespace MorenoRafael\Plans;
+namespace RLaravel\Plans;
 
 use Carbon\Carbon;
-use MorenoRafael\Plans\Exceptions\InvalidPlanFeatureException;
+use RLaravel\Plans\Exceptions\InvalidPlanFeatureException;
 
 /**
  * Class Feature
- * @package MorenoRafael\Plans
+ * @package RLaravel\Plans
  */
 class Feature
 {

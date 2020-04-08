@@ -1,13 +1,13 @@
 <?php
 
-namespace MorenoRafael\Plans;
+namespace RLaravel\Plans;
 
 use Carbon\Carbon;
-use MorenoRafael\Plans\Exceptions\InvalidIntervalException;
+use RLaravel\Plans\Exceptions\InvalidIntervalException;
 
 /**
  * Class Period
- * @package MorenoRafael\Plans
+ * @package RLaravel\Plans
  */
 class Period
 {

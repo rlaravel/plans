@@ -1,16 +1,16 @@
 <?php
 
-namespace MorenoRafael\Plans;
+namespace RLaravel\Plans;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
-use MorenoRafael\Plans\Contracts\SubscriptionBuilderInterface;
-use MorenoRafael\Plans\Models\PlanSubscription;
+use RLaravel\Plans\Contracts\SubscriptionBuilderInterface;
+use RLaravel\Plans\Models\PlanSubscription;
 use Ramsey\Uuid\Uuid;
 
 /**
  * Class SubscriptionBuilder
- * @package MorenoRafael\Plans
+ * @package RLaravel\Plans
  */
 class SubscriptionBuilder implements SubscriptionBuilderInterface
 {

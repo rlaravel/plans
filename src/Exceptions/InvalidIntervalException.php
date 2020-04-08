@@ -1,12 +1,12 @@
 <?php
 
-namespace MorenoRafael\Plans\Exceptions;
+namespace RLaravel\Plans\Exceptions;
 
 use Exception;
 
 /**
  * Class InvalidIntervalException
- * @package MorenoRafael\Plans\Exceptions
+ * @package RLaravel\Plans\Exceptions
  */
 class InvalidIntervalException extends Exception
 {

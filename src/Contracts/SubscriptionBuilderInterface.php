@@ -1,10 +1,10 @@
 <?php
 
-namespace MorenoRafael\Plans\Contracts;
+namespace RLaravel\Plans\Contracts;
 
 /**
  * Interface SubscriptionBuilderInterface
- * @package MorenoRafael\Plans\Contracts
+ * @package RLaravel\Plans\Contracts
  */
 interface SubscriptionBuilderInterface
 {
@@ -27,7 +27,7 @@ interface SubscriptionBuilderInterface
      * Crear una nueva suscripción.
      *
      * @param array $attributes
-     * @return \MorenoRafael\Plans\Models\PlanSubscription
+     * @return \RLaravel\Plans\Models\PlanSubscription
      */
-    public function create(array $attributes = []): \MorenoRafael\Plans\Models\PlanSubscription;
+    public function create(array $attributes = []): \RLaravel\Plans\Models\PlanSubscription;
 }

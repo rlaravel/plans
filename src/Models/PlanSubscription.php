@@ -1,6 +1,6 @@
 <?php
 
-namespace MorenoRafael\Plans\Models;
+namespace RLaravel\Plans\Models;
 
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
@@ -8,23 +8,23 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\DB;
-use MorenoRafael\Plans\Contracts\PlanInterface;
-use MorenoRafael\Plans\Contracts\PlanSubscriptionInterface;
-use MorenoRafael\Plans\Events\SubscriptionCanceled;
-use MorenoRafael\Plans\Events\SubscriptionCreated;
-use MorenoRafael\Plans\Events\SubscriptionPlanChanged;
-use MorenoRafael\Plans\Events\SubscriptionRenewed;
-use MorenoRafael\Plans\Getters\PlanSubscription as GetPlanSubscriptionAttributes;
-use MorenoRafael\Plans\Models\Traits\CreatingUuidModel;
-use MorenoRafael\Plans\Period;
-use MorenoRafael\Plans\Presenters\PlanSubscriptionPresenter;
-use MorenoRafael\Plans\SubscriptionAbility;
-use MorenoRafael\Plans\SubscriptionUsageManager;
-use MorenoRafael\Plans\Traits\BelongsToPlan;
+use RLaravel\Plans\Contracts\PlanInterface;
+use RLaravel\Plans\Contracts\PlanSubscriptionInterface;
+use RLaravel\Plans\Events\SubscriptionCanceled;
+use RLaravel\Plans\Events\SubscriptionCreated;
+use RLaravel\Plans\Events\SubscriptionPlanChanged;
+use RLaravel\Plans\Events\SubscriptionRenewed;
+use RLaravel\Plans\Getters\PlanSubscription as GetPlanSubscriptionAttributes;
+use RLaravel\Plans\Models\Traits\CreatingUuidModel;
+use RLaravel\Plans\Period;
+use RLaravel\Plans\Presenters\PlanSubscriptionPresenter;
+use RLaravel\Plans\SubscriptionAbility;
+use RLaravel\Plans\SubscriptionUsageManager;
+use RLaravel\Plans\Traits\BelongsToPlan;
 
 /**
  * Class PlanSubscription
- * @package MorenoRafael\Plans\Models
+ * @package RLaravel\Plans\Models
  * @property-read int $id
  * @property int $subscribable_id
  * @property string $subscribable_type
@@ -102,7 +102,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
      * @param string $interval_count
      * @param string $start
      * @return $this
-     * @throws \MorenoRafael\Plans\Exceptions\InvalidIntervalException
+     * @throws \RLaravel\Plans\Exceptions\InvalidIntervalException
      */
     protected function setNewPeriod($interval = '', $interval_count = '', $start = '')
     {
@@ -247,7 +247,7 @@ class PlanSubscription extends Model implements PlanSubscriptionInterface
     /**
      * @param Plan $plan
      * @return Model
-     * @throws \MorenoRafael\Plans\Exceptions\InvalidIntervalException
+     * @throws \RLaravel\Plans\Exceptions\InvalidIntervalException
      */
     public function changePlan(Plan $plan): Model
     {

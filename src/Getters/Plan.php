@@ -1,12 +1,12 @@
 <?php
 
-namespace MorenoRafael\Plans\Getters;
+namespace RLaravel\Plans\Getters;
 
-use MorenoRafael\Plans\Period;
+use RLaravel\Plans\Period;
 
 /**
  * Trait Plan
- * @package MorenoRafael\Plans\Getters
+ * @package RLaravel\Plans\Getters
  */
 trait Plan
 {

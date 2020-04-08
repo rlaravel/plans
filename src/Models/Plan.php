@@ -1,17 +1,17 @@
 <?php
 
-namespace MorenoRafael\Plans\Models;
+namespace RLaravel\Plans\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use MorenoRafael\Plans\Contracts\PlanInterface;
-use MorenoRafael\Plans\Exceptions\InvalidPlanFeatureException;
-use MorenoRafael\Plans\Getters\Plan as GetPlanAttributes;
-use MorenoRafael\Plans\Models\Traits\CreatingUuidModel;
+use RLaravel\Plans\Contracts\PlanInterface;
+use RLaravel\Plans\Exceptions\InvalidPlanFeatureException;
+use RLaravel\Plans\Getters\Plan as GetPlanAttributes;
+use RLaravel\Plans\Models\Traits\CreatingUuidModel;
 
 /**
  * Class Plan
- * @package MorenoRafael\Plans\Models
+ * @package RLaravel\Plans\Models
  * @property-read int $id
  * @property string $name
  * @property string|null $description
@@ -22,8 +22,8 @@ use MorenoRafael\Plans\Models\Traits\CreatingUuidModel;
  * @property int|null $sort_order
  * @property-read \Carbon\Carbon $created_at
  * @property-read \Carbon\Carbon $updated_at
- * @property-read \MorenoRafael\Plans\Models\PlanFeature[]|\Illuminate\Support\Collection $features
- * @property-read \MorenoRafael\Plans\Models\PlanSubscription[]|\Illuminate\Support\Collection $subscriptions
+ * @property-read \RLaravel\Plans\Models\PlanFeature[]|\Illuminate\Support\Collection $features
+ * @property-read \RLaravel\Plans\Models\PlanSubscription[]|\Illuminate\Support\Collection $subscriptions
  * @mixin \Eloquent
  */
 class Plan extends Model implements PlanInterface

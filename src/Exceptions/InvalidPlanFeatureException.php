@@ -1,12 +1,12 @@
 <?php
 
-namespace MorenoRafael\Plans\Exceptions;
+namespace RLaravel\Plans\Exceptions;
 
 use Exception;
 
 /**
  * Class InvalidPlanFeatureException
- * @package MorenoRafael\Plans\Exceptions
+ * @package RLaravel\Plans\Exceptions
  */
 class InvalidPlanFeatureException extends Exception
 {

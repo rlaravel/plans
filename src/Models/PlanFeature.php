@@ -1,16 +1,16 @@
 <?php
 
-namespace MorenoRafael\Plans\Models;
+namespace RLaravel\Plans\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
-use MorenoRafael\Plans\Contracts\PlanFeatureInterface;
-use MorenoRafael\Plans\Models\Traits\CreatingUuidModel;
-use MorenoRafael\Plans\Traits\BelongsToPlan;
+use RLaravel\Plans\Contracts\PlanFeatureInterface;
+use RLaravel\Plans\Models\Traits\CreatingUuidModel;
+use RLaravel\Plans\Traits\BelongsToPlan;
 
 /**
  * Class PlanFeature
- * @package MorenoRafael\Plans\Models
+ * @package RLaravel\Plans\Models
  * @property-read int $id
  * @property int $plan_id
  * @property string $code

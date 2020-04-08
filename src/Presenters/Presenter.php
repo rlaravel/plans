@@ -1,6 +1,6 @@
 <?php
 
-namespace MorenoRafael\Plans\Presenters;
+namespace RLaravel\Plans\Presenters;
 
 use Illuminate\Database\Eloquent\Model;
 

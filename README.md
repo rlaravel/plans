@@ -5,19 +5,19 @@ Composer
 --------
 
 
-    $ composer require morenorafael/plans
+    $ composer require rlaravel/plans
 
 Service Provider
 ----------------
 
-Agregue ``MorenoRafael\Plans\Providers\PlansServiceProvider::class`` a su archivo de proveedores de servicios de aplicaciones: ``config/app.php``.
+Agregue ``RLaravel\Plans\Providers\PlansServiceProvider::class`` a su archivo de proveedores de servicios de aplicaciones: ``config/app.php``.
 
 
     'providers' => [
         /**
          * Third Party Service Providers...
          */
-        MorenoRafael\Plans\Providers\PlansServiceProvider::class,
+        RLaravel\Plans\Providers\PlansServiceProvider::class,
     ]
 
 Config archivo y migraciones
@@ -26,7 +26,7 @@ Config archivo y migraciones
 Publique el archivo de configuración del paquete y las migraciones con el siguiente comando:
 
 
-    php artisan vendor:publish --provider="MorenoRafael\Plans\Providers\PlansServiceProvider"
+    php artisan vendor:publish --provider="RLaravel\Plans\Providers\PlansServiceProvider"
 
 Luego ejecuta las migraciones:
 
@@ -36,7 +36,7 @@ Luego ejecuta las migraciones:
 Traits y Contratos
 --------------------
 
-Agregue el rasgo ``MorenoRafael\Plans\Traits\PlanSubscriber`` y el contrato ``MorenoRafael\Plans\Contracts\PlanSubscriberInterface`` a su modelo de ``User``.
+Agregue el rasgo ``RLaravel\Plans\Traits\PlanSubscriber`` y el contrato ``RLaravel\Plans\Contracts\PlanSubscriberInterface`` a su modelo de ``User``.
 
 Vea el siguiente ejemplo:
 
@@ -44,8 +44,8 @@ Vea el siguiente ejemplo:
     namespace App\Models;
 
     use Illuminate\Foundation\Auth\User as Authenticatable;
-    use MorenoRafael\Plans\Contracts\PlanSubscriberInterface;
-    use MorenoRafael\Plans\Traits\PlanSubscriber;
+    use RLaravel\Plans\Contracts\PlanSubscriberInterface;
+    use RLaravel\Plans\Traits\PlanSubscriber;
 
     class User extends Authenticatable implements PlanSubscriberInterface
     {
@@ -60,8 +60,8 @@ Crear un Plan
 
 
 
-    use MorenoRafael\Plans\Models\Plan;
-    use MorenoRafael\Plans\Models\PlanFeature;
+    use RLaravel\Plans\Models\Plan;
+    use RLaravel\Plans\Models\PlanFeature;
 
     $plan = Plan::create([
         'name' => 'Pro',
@@ -100,7 +100,7 @@ Primero, recupere una instancia de su modelo de suscriptor, que normalmente ser�
 
 
     use Auth;
-    use MorenoRafael\Plans\Models\Plan;
+    use RLaravel\Plans\Models\Plan;
 
     $user = Auth::user();
     $plan = Plan::find(1);
@@ -112,7 +112,7 @@ El primer argumento pasado al método `` newSubscription`` debe ser el nombre de
 Resolución de suscripciones
 ----------------------
 
-Cuando utilice el método `` subscription() `` (es decir, `` $user->subscription('main') ``) en el modelo suscriptor para recuperar una subscripción, recibirá la última suscripción creada por el suscriptor y el nombre de la suscripción. Por ejemplo, si se suscribe **Jane Doe** a **Free plan** y, posteriormente, a **Pro plan**, el paquete devolverá la suscripción con el **Pro plan** porque es la suscripción más reciente disponible. Si tiene un requisito diferente, puede usar su propia resolución de suscripción vinculando una implementación de `` MorenoRafael\Plans \Contracts\SubscriptionResolverInterface`` al `service container`__; al igual que:
+Cuando utilice el método `` subscription() `` (es decir, `` $user->subscription('main') ``) en el modelo suscriptor para recuperar una subscripción, recibirá la última suscripción creada por el suscriptor y el nombre de la suscripción. Por ejemplo, si se suscribe **Jane Doe** a **Free plan** y, posteriormente, a **Pro plan**, el paquete devolverá la suscripción con el **Pro plan** porque es la suscripción más reciente disponible. Si tiene un requisito diferente, puede usar su propia resolución de suscripción vinculando una implementación de `` RLaravel\Plans \Contracts\SubscriptionResolverInterface`` al `service container`__; al igual que:
 
 https://documentacion-laravel.com/container.html#introduction
 
@@ -231,7 +231,7 @@ Para renovar una suscripción, puede utilizar el método ``renew`` disponible en
 .. caution::
     Las suscripciones canceladas con un período finalizado no se pueden renovar.
 
-El evento ``MorenoRafael\Plans\Events\SubscriptionRenewed`` se activa cuando una suscripción se renueva con el método ``renew``.
+El evento ``RLaravel\Plans\Events\SubscriptionRenewed`` se activa cuando una suscripción se renueva con el método ``renew``.
 
 Cancelar una suscripción
 ---------------------
@@ -254,16 +254,16 @@ Eventos
 
 Los siguientes son los eventos disparados por el paquete:
 
-- ``MorenoRafael\Plans\Events\SubscriptionCreated``: Se activa cuando se crea una suscripción.
-- ``MorenoRafael\Plans\Events\SubscriptionRenewed``: Se activa cuando una suscripción se renueva con el método ``renew()``.
-- ``MorenoRafael\Plans\Events\SubscriptionCanceled``: Se activa cuando se cancela una suscripción utilizando el método ``cancel()``.
-- ``MorenoRafael\Plans\Events\SubscriptionPlanChanged``: Se dispara cuando se cambia el plan de suscripción; se activará una vez que se guarde el modelo ``PlanSubscription``. El cambio de plan se determina comparando el valor original y actual de ``plan_id``.
+- ``RLaravel\Plans\Events\SubscriptionCreated``: Se activa cuando se crea una suscripción.
+- ``RLaravel\Plans\Events\SubscriptionRenewed``: Se activa cuando una suscripción se renueva con el método ``renew()``.
+- ``RLaravel\Plans\Events\SubscriptionCanceled``: Se activa cuando se cancela una suscripción utilizando el método ``cancel()``.
+- ``RLaravel\Plans\Events\SubscriptionPlanChanged``: Se dispara cuando se cambia el plan de suscripción; se activará una vez que se guarde el modelo ``PlanSubscription``. El cambio de plan se determina comparando el valor original y actual de ``plan_id``.
 
 Eloquent Scopes
 ===============
 
 
-    use MorenoRafael\Plans\Models\PlanSubscription;
+    use RLaravel\Plans\Models\PlanSubscription;
 
     // Obtenga suscripciones por plan:
     $subscriptions = PlanSubscription::byPlan($plan_id)->get();

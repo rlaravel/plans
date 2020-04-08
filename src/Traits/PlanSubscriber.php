@@ -1,18 +1,18 @@
 <?php
 
-namespace MorenoRafael\Plans\Traits;
+namespace RLaravel\Plans\Traits;
 
 use Illuminate\Container\Container;
 use Illuminate\Support\Facades\App;
-use MorenoRafael\Plans\Contracts\SubscriptionBuilderInterface;
-use MorenoRafael\Plans\Contracts\SubscriptionResolverInterface;
-use MorenoRafael\Plans\Models\Plan;
-use MorenoRafael\Plans\Models\PlanSubscription;
-use MorenoRafael\Plans\SubscriptionUsageManager;
+use RLaravel\Plans\Contracts\SubscriptionBuilderInterface;
+use RLaravel\Plans\Contracts\SubscriptionResolverInterface;
+use RLaravel\Plans\Models\Plan;
+use RLaravel\Plans\Models\PlanSubscription;
+use RLaravel\Plans\SubscriptionUsageManager;
 
 /**
  * Trait PlanSubscriber
- * @package MorenoRafael\Plans\Traits
+ * @package RLaravel\Plans\Traits
  */
 trait PlanSubscriber
 {
@@ -20,7 +20,7 @@ trait PlanSubscriber
      * Obtener una suscripción por nombre.
      *
      * @param string $name
-     * @return \MorenoRafael\Plans\Models\PlanSubscription|null
+     * @return \RLaravel\Plans\Models\PlanSubscription|null
      */
     public function subscription(string $name = 'default')
     {
@@ -87,7 +87,7 @@ trait PlanSubscriber
      * Obtener instancia de administrador de uso de suscripción.
      *
      * @param  string $subscription
-     * @return \MorenoRafael\Plans\SubscriptionUsageManager
+     * @return \RLaravel\Plans\SubscriptionUsageManager
      */
     public function subscriptionUsage($subscription = 'default')
     {
