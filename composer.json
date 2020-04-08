@@ -9,8 +9,7 @@
         }
     ],
     "require": {
-        "ramsey/uuid": "^3.9",
-        "symfony/http-foundation": "4.4.7"
+        "ramsey/uuid": "^3.9"
     },
     "require-dev": {
         "orchestra/testbench": "^4.0"
