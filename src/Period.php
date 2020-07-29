@@ -62,10 +62,10 @@ class Period
     /**
      * Create a new Period instance.
      *
-     * @param  string  $interval
-     * @param  int  $count
-     * @param  string  $start
-     * @throws InvalidIntervalException
+     * @param string $interval
+     * @param int $count
+     * @param string $start
+     * @throws \Throwable
      */
     public function __construct($interval = 'month', $count = 1, $start = '')
     {
@@ -76,13 +76,15 @@ class Period
         } else {
             $this->start = $start;
         }
-        if (! $this::isValidInterval($interval)) {
-            throw new InvalidIntervalException($interval);
-        }
+
+        throw_if(!$this::isValidInterval($interval), new InvalidIntervalException($interval));
+
         $this->interval = $interval;
+
         if ($count > 0) {
             $this->interval_count = $count;
         }
+
         $this->calculate();
     }
 

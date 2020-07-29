@@ -6,8 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use RLaravel\Plans\Contracts\PlanInterface;
 use RLaravel\Plans\Exceptions\InvalidPlanFeatureException;
-use RLaravel\Plans\Getters\Plan as GetPlanAttributes;
 use RLaravel\Plans\Models\Traits\CreatingUuidModel;
+use RLaravel\Plans\Period;
 
 /**
  * Class Plan
@@ -28,7 +28,7 @@ use RLaravel\Plans\Models\Traits\CreatingUuidModel;
  */
 class Plan extends Model implements PlanInterface
 {
-    use GetPlanAttributes, CreatingUuidModel;
+    use CreatingUuidModel;
 
     /**
      * @var string
@@ -55,6 +55,23 @@ class Plan extends Model implements PlanInterface
                 $model->interval_count = 1;
             }
         });
+    }
+
+    /**
+     * @return mixed|null
+     */
+    public function getIntervalNameAttribute()
+    {
+        $intervals = Period::getAllIntervals();
+        return (isset($intervals[$this->interval]) ? $intervals[$this->interval] : null);
+    }
+
+    /**
+     * @return string
+     */
+    public function getIntervalDescriptionAttribute()
+    {
+        return trans_choice('plans::messages.interval_description.' . $this->interval, $this->interval_count);
     }
 
     /**

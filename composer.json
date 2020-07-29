@@ -19,7 +19,9 @@
         }
     },
     "require": {},
-    "require-dev": {},
+    "require-dev": {
+        "orchestra/testbench": "^5.3"
+    },
     "extra": {
         "laravel": {
             "providers": [

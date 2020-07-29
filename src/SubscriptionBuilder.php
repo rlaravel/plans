@@ -37,7 +37,6 @@ class SubscriptionBuilder implements SubscriptionBuilderInterface
 
     /**
      * Número personalizado de días de prueba para aplicar a la suscripción.
-     *
      * Esto anulará el período de prueba del plan.
      *
      * @var int|null

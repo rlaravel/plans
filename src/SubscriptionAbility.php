@@ -35,8 +35,8 @@ class SubscriptionAbility
     public function canUse($feature)
     {
         // Obtén características y uso
-        $feature_value = $this->value($feature);
-        if (is_null($feature_value)) {
+        $featureValue = $this->value($feature);
+        if (is_null($featureValue)) {
             return false;
         }
         // Coincide con el valor de tipo "booleano"
@@ -44,10 +44,7 @@ class SubscriptionAbility
             return true;
         }
 
-        // Si el valor de la característica es cero, devolvamos falso
-        // ya que no hay usos disponibles. (útil para
-        // deshabilitar características contables)
-        if ($feature_value === '0') {
+        if (!$this->useIsAvailable($featureValue)) {
             return false;
         }
 
@@ -90,14 +87,14 @@ class SubscriptionAbility
      */
     public function enabled($feature)
     {
-        $feature_value = $this->value($feature);
-        if (is_null($feature_value)) {
+        $featureValue = $this->value($feature);
+        if (is_null($featureValue)) {
             return false;
         }
 
         // Si el valor es una de las palabras positivas configuradas,
         // entonces la función está habilitada.
-        if (in_array(strtoupper($feature_value), config('plans.positive_words'))) {
+        if ($this->isPositiveWord($featureValue)) {
             return true;
         }
 
@@ -120,5 +117,31 @@ class SubscriptionAbility
         }
 
         return $default;
+    }
+
+    /**
+     * @param $featureValue
+     * @return bool
+     */
+    protected function useIsAvailable($featureValue)
+    {
+        if ($featureValue === '0') {
+            return false;
+        }
+
+        return true;
+    }
+
+    /**
+     * @param $featureValue
+     * @return bool
+     */
+    protected function isPositiveWord($featureValue)
+    {
+        if (in_array(strtoupper($featureValue), config('plans.positive_words'))) {
+            return true;
+        }
+
+        return false;
     }
 }

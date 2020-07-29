@@ -35,15 +35,12 @@ class Feature
     /**
      * Create a new Feature instance.
      *
-     * Feature constructor.
      * @param $featureCode
-     * @throws InvalidPlanFeatureException
+     * @throws \Throwable
      */
     public function __construct($featureCode)
     {
-        if (!self::isValid($featureCode)) {
-            throw new InvalidPlanFeatureException($featureCode);
-        }
+        throw_if(!self::isValid($featureCode), new InvalidPlanFeatureException($featureCode));
 
         $this->featureCode = $featureCode;
         $feature = config('plans.features.' . $featureCode);
@@ -173,7 +170,9 @@ class Feature
         if (empty($dateFrom)) {
             $dateFrom = new Carbon();
         }
+
         $period = new Period($this->resettableInterval, $this->resettableCount, $dateFrom);
+
         return $period->getEndDate();
     }
 }

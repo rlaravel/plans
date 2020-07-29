@@ -30,6 +30,10 @@ class PlansServiceProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(
+            __DIR__ . '/../../config/plans.php', 'plans'
+        );
+
         $this->app->bind(PlanInterface::class, Plan::class);
         $this->app->bind(PlanFeatureInterface::class, PlanFeature::class);
         $this->app->bind(PlanSubscriptionInterface::class, PlanSubscription::class);
@@ -45,6 +49,9 @@ class PlansServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $this->loadMigrationsFrom(__DIR__ . '/../../database/migrations');
+        $this->loadFactoriesFrom(__DIR__ . '/../../database/factories');
+
         $this->publishes([
             __DIR__ . '/../../config/plans.php' => config_path('plans.php')
         ], 'config');

@@ -34,7 +34,8 @@ class SubscriptionUsageManager
      * @param int $uses
      * @param bool $incremental
      * @return mixed
-     * @throws Exceptions\InvalidPlanFeatureException
+     * @throws Exceptions\InvalidIntervalException
+     * @throws \Throwable
      */
     public function record($feature, $uses = 1, $incremental = true)
     {
@@ -65,7 +66,7 @@ class SubscriptionUsageManager
      * @param $feature
      * @param int $uses
      * @return bool
-     * @throws Exceptions\InvalidPlanFeatureException
+     * @throws \Throwable
      */
     public function reduce($feature, $uses = 1)
     {
