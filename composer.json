@@ -8,17 +8,18 @@
             "email": "rlaravel1@gmail.com"
         }
     ],
-    "require": {
-        "ramsey/uuid": "^3.9"
-    },
-    "require-dev": {
-        "orchestra/testbench": "^4.0"
-    },
     "autoload": {
         "psr-4": {
             "RLaravel\\Plans\\": "src/"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "RLaravel\\Plans\\Tests\\": "tests/"
+        }
+    },
+    "require": {},
+    "require-dev": {},
     "extra": {
         "laravel": {
             "providers": [
